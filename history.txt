@@ -1,0 +1,5 @@
+1) gem build nested_scaffold_gem.gemspec
+2) gem push nested_scaffold_gem-0.1.1.gem
+
+loeschen:
+gem yank nested_scaffold_gem -v 0.1.0

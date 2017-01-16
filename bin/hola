@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'nested_scaffold_gem'
+puts Hola.hi(ARGV[0]) 
