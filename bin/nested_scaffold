@@ -2,9 +2,9 @@
 
 require 'nested_scaffold_gem'
 
-#angenommene Variablen, die an nested_scaffold_gem.rb weiter gegeben wird
-Nested_scaffold.resources(ARGV[0],ARGV[1]) 
+#OLD
+#Nested_scaffold.resources(ARGV[0],ARGV[1]) 
+#puts "Ihre erste Resource lautet: " + Nested_scaffold.erste
+#puts "Ihre zweite Resource lautet: " + Nested_scaffold.zweite
 
-#Ausgabe der Nested_scaffold Klasse mit Ihren Methoden
-puts "Ihre erste Resource lautet: " + Nested_scaffold.erste
-puts "Ihre zweite Resource lautet: " + Nested_scaffold.zweite
+resources = Nested_scaffold.new(ARGV[0], ARGV[1])
