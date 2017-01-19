@@ -11,4 +11,4 @@ class Hola::Translator
       "hello world"
     end
   end
-end
+end 

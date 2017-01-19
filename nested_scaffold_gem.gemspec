@@ -1,7 +1,8 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'nested_scaffold_gem/version'
+require File.expand_path('../lib/nested_scaffold_gem/version', __FILE__)
+#require 'nested_scaffold_gem/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "nested_scaffold_gem"
@@ -27,9 +28,9 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/})
   end
   spec.files         = ["lib/nested_scaffold_gem.rb", "lib/nested_scaffold_gem/translator.rb"]
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  #spec.executables << "bin/hola"
+  spec.bindir        = "bin"
+  #spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables = ["hola", "nested_scaffold"]
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.13"
