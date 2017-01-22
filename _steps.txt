@@ -1,0 +1,75 @@
+SCHRITTE
+1:n -> movie:rating
+1) scaffold der 1- Resource:
+rails g scaffold movie name:string release:date price:int
+	ggf. rakerake db:migrate
+
+2)	scaffold der -n Resource: 
+rails g scaffold rating name:string comment:text rating:int movie:references 
+
+3) app/models/movie.rb: in die Klasse
+	has_many :ratings, dependent: :destroy
+hinzufügen.
+
+4) app/models/rating.rb: in die Klasse
+	belongs_to :movie
+hinzufügen. Wenn references fällt dieser Schritt weg! 
+
+5) in config/routes.rb: 
+	resources :ratings
+ 	resources :movies
+
+ 	ändern in:
+ 	resources :movies do
+ 		resources :ratings
+ 	end
+
+6) Controller von n-beziehung anpassen:
+	app/controllers/ratings_controller.rb
+
+	Zu Anfang in die Klasse hinzufügen:
+	before_action :set_movie
+
+	in den private Bereich in der Klasse hinzufügen:
+	def set_movie
+      @movie = Movie.find(params[:movie_id])
+    end
+
+    Änderungen:
+	alt:	@ratings = Rating.all
+	neu:	@ratings = @movie.ratings
+	
+	alt:	redirect_to @Rating
+	neu:	redirect_to movie_rating_path(@movie.id, @rating.id)
+
+	alt:	redirect_to ratings_url
+	neu:	redirect_to movie_ratings_url
+
+7)	(optional)
+	app/views/movies/index.html.erb
+	als letzten th tag hinzufügen:
+	<th>Movies</th>
+	als ersten link_to hinzufügen:
+	<td><%= link_to 'Ratings', movie_ratings_path(movie.id) %></td>
+
+8)	app/views/rating/_form.html.erb
+	alt:	form_for(rating)
+	neu:	form_for([@movie, @rating])
+
+	app/views/rating/edit.html.erb
+	alt:	link_to 'Show', @rating
+	neu:	link_to 'Show', movie_review_path(@movie.id, @rating.id)
+
+	alt:	ratings_path
+	neu:	movie_ratings_path(@movie.id)
+
+	app/views/rating/new.html.erb
+	alt:	ratings_path
+	neu:	movie_ratings_path(@movie.id)
+
+	app/views/rating/show.html.erb
+	alt:	edit_rating_path(@rating)
+	neu:	edit_movie_rating_path(@movie.id, @review.id)
+
+	alt:	ratings_path
+	neu:	movie_ratings_path(@movie.id)

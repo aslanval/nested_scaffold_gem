@@ -8,3 +8,4 @@ require 'nested_scaffold_gem'
 #puts "Ihre zweite Resource lautet: " + Nested_scaffold.zweite
 
 resources = Nested_scaffold.new(ARGV[0], ARGV[1])
+resources.first_model
